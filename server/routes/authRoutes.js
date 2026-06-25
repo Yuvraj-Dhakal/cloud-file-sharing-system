@@ -4,12 +4,16 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// REGISTER
+
+// ========================
+// REGISTER USER
+// ========================
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
     const userExists = await User.findOne({ email });
+
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -22,23 +26,45 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
-    res.status(201).json({ message: "User registered successfully", user });
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+
   } catch (error) {
+    console.log("REGISTER ERROR:", error);
     res.status(500).json({ message: error.message });
   }
 });
 
-// LOGIN (IMPORTANT)
+
+// ========================
+// LOGIN USER (DEBUG VERSION)
+// ========================
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // 🔍 DEBUG LOGS
+    console.log("EMAIL:", email);
+    console.log("PASSWORD ENTERED:", password);
+
     const user = await User.findOne({ email });
+
+    console.log("USER FOUND:", user);
+
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
+
+    console.log("PASSWORD MATCH:", isMatch);
+
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
@@ -49,7 +75,7 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.json({
+    return res.json({
       message: "Login successful",
       token,
       user: {
@@ -60,6 +86,7 @@ router.post("/login", async (req, res) => {
     });
 
   } catch (error) {
+    console.log("LOGIN ERROR:", error);
     res.status(500).json({ message: error.message });
   }
 });

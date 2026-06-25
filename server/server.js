@@ -30,3 +30,22 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+
+
+app.get("/test-upload", (req, res) => {
+  res.send(`
+    <form action="/test-upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <button type="submit">Upload</button>
+    </form>
+  `);
+});
+
+const upload = require("./middleware/upload");
+
+app.post("/test-upload", upload.single("file"), (req, res) => {
+  console.log("FILE:", req.file);
+  res.json(req.file);
+});
