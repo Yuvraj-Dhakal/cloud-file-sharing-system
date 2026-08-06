@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { QRCodeCanvas } from "qrcode.react";
+import { toast } from "react-toastify";
+
+import DashboardNavbar from "../components/DashboardNavbar";
+import StatsCards from "../components/StatsCards";
+import UploadCard from "../components/UploadCard";
+import SearchBar from "../components/SearchBar";
+import FileCard from "../components/FileCard";
+
+import "../styles/Dashboard.css";
 function Dashboard() {
   const [file, setFile] = useState(null);
   const [files, setFiles] = useState([]);
-  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (!token) {
-      navigate("/login");
+      window.location.href = "/login";
       return;
     }
-
     fetchFiles();
   }, []);
 
-  // ======================
-  // GET FILES
-  // ======================
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -35,20 +37,17 @@ function Dashboard() {
       );
 
       setFiles(res.data);
+
     } catch (err) {
-      console.log("FETCH ERROR:", err);
+      console.log(err);
+      toast.error("Unable to load files.");
     }
   };
-
-  // ======================
-  // UPLOAD FILE
-  // ======================
   const uploadFile = async () => {
     if (!file) {
-      alert("Select file first");
+      toast.warning("Please choose a file.");
       return;
     }
-
     const formData = new FormData();
     formData.append("file", file);
 
@@ -66,61 +65,58 @@ function Dashboard() {
         }
       );
 
-      alert("Uploaded successfully");
-
+      toast.success("Upload successful");
       setFile(null);
-
+      const input = document.getElementById("fileInput");
+      if (input) input.value = "";
       fetchFiles();
     } catch (err) {
-      console.log("UPLOAD ERROR:", err);
-      alert("Upload failed");
+      toast.error("Upload failed.");
     }
   };
+  const downloadFile = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      `http://localhost:5000/api/files/download/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        responseType: "blob",
+      }
+    );
 
-  // ======================
-  // DOWNLOAD FILE
-  // ======================
-  const downloadFile = async (id, originalName) => {
-    try {
-      const token = localStorage.getItem("token");
+    // Get filename from response header
+    let filename = "download";
 
-      const res = await axios.get(
-        `http://localhost:5000/api/files/download/${id}`,
-        {
-          responseType: "blob",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const disposition =
+      response.headers["content-disposition"];
 
-      const url = window.URL.createObjectURL(
-        new Blob([res.data])
-      );
-
-      const link = document.createElement("a");
-
-      link.href = url;
-      link.setAttribute("download", originalName);
-
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      console.log("DOWNLOAD ERROR:", err);
-      alert("Download failed");
+    if (disposition) {
+      const match = disposition.match(/filename="(.+)"/);
+      if (match) filename = match[1];
     }
-  };
 
-  // ======================
-  // DELETE FILE
-  // ======================
+    // Create download
+    const url = window.URL.createObjectURL(response.data);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+    toast.success("Download started.");
+  } catch (err) {
+    console.log(err);
+    toast.error("Download failed.");
+  }
+};
   const deleteFile = async (id) => {
     try {
       const token = localStorage.getItem("token");
-
       await axios.delete(
         `http://localhost:5000/api/files/delete/${id}`,
         {
@@ -129,128 +125,69 @@ function Dashboard() {
           },
         }
       );
-
-      alert("Deleted successfully");
-
+      toast.success("File deleted");
       fetchFiles();
     } catch (err) {
-      console.log("DELETE ERROR:", err);
-      alert("Delete failed");
+      toast.error(
+        err.response?.data?.message || "Delete failed."
+      );
     }
   };
-
-  // ======================
-  // LOGOUT
-  // ======================
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
+  const filteredFiles = files.filter((f) =>
+    f.originalName.toLowerCase().includes(search.toLowerCase())
+  );
   return (
-    <div style={{ padding: "40px" }}>
-      <h1> Admin Dashboard</h1>
+    <div className="dashboard-page">
+      <DashboardNavbar />
+      <main className="dashboard-main container">
+        <section className="dashboard-section">
+          <StatsCards files={files} />
+        </section>
+        <section className="dashboard-section">
+          <UploadCard
+            file={file}
+            setFile={setFile}
+            uploadFile={uploadFile}
+          />
+        </section>
+        <section className="dashboard-section">
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+          />
+        </section>
+        <section className="dashboard-section">
+          <div className="row g-4">
+            {filteredFiles.map((file) => (
+              <div
+                className="col-lg-6"
+                key={file._id}
+              >
+                <FileCard
+                  file={file}
+                  downloadFile={downloadFile}
+                  deleteFile={deleteFile}
+                />
+              </div>
 
-      <input
-        type="file"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
+            ))}
 
-      <button
-        onClick={uploadFile}
-        style={{ marginLeft: "10px" }}
-      >
-        Upload
-      </button>
+            {files.length === 0 && (
+              <div className="col-12">
+                <div className="empty-state">
+                  <i className="bi bi-folder2-open"></i>
+                  <h2>No Files Uploaded</h2>
+                  <p>
+                    Upload your first file to start using
+                    YuvNext Cloud Storage.
+                  </p>
+                </div>
 
-      <hr />
-
-      <h2>Your Files</h2>
-
-      {files.length === 0 ? (
-        <p>No files uploaded yet.</p>
-      ) : (
-        files.map((f) => (
-          <div
-            key={f._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "15px",
-              marginBottom: "15px",
-              borderRadius: "8px",
-            }}
-          >
-            <h4>📄 {f.originalName}</h4>
-
-            <p>Size: {f.size} bytes</p>
-
-            <button
-              onClick={() =>
-                downloadFile(
-                  f._id,
-                  f.originalName
-                )
-              }
-            >
-              Download
-            </button>
-
-            <button
-              onClick={() => deleteFile(f._id)}
-              style={{
-                marginLeft: "10px",
-                color: "red",
-              }}
-            >
-              Delete
-            </button>
-
-            <div style={{ marginTop: "10px" }}>
-  <p>Share Link:</p>
-
-  <input
-    type="text"
-    readOnly
-    value={`http://localhost:5000/api/files/share/${f.shareId}`}
-    style={{
-      width: "100%",
-      padding: "8px",
-    }}
-  />
-
-  <br />
-  <br />
-
-  <button
-  onClick={() => {
-    navigator.clipboard.writeText(
-      `http://localhost:5000/api/files/share/${f.shareId}`
-    );
-    alert("Link copied!");
-  }}
->
-  Copy Link
-</button>
-
-<br />
-<br />
-
-<p>QR Code:</p>
-
-<QRCodeCanvas
-  value={`http://localhost:5000/api/files/share/${f.shareId}`}
-  size={150}
-/>
-</div>
+              </div>
+            )}
           </div>
-        ))
-      )}
-
-      <br />
-
-      <button onClick={logout}>
-        Logout
-      </button>
+        </section>
+      </main>
     </div>
   );
 }

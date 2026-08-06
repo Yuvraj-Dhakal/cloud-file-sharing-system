@@ -13,7 +13,7 @@ const protect = (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       req.user = decoded;
-      next();
+      next();   // error handling is missing here, so if jwt.verify fails, it will throw an error and not call next()
     } catch (error) {
       return res.status(401).json({ message: "Not authorized, token failed" });
     }

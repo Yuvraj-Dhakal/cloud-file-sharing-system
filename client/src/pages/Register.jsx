@@ -1,47 +1,155 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../config/api";
+
+import "../styles/Register.css";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleRegister = async (e) => {
     e.preventDefault();
-
+    setError("");
+    if (password !== confirmPassword) {
+      return setError("Passwords do not match.");
+    }
+    setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await api.post("/auth/register", {
         name,
         email,
         password,
       });
-
-      alert("Registered successfully!");
+      toast.success(
+        "Account created successfully!"
+      );
       navigate("/login");
-
     } catch (err) {
-      alert(err.response?.data?.message || "Error");
+      setError(
+        err.response?.data?.message ||
+          "Registration failed."
+      );
     }
+    setLoading(false);
   };
-
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2>Register</h2>
+    <div className="register-page">
+      <div className="register-card">
+        <div className="brand">
+          <h2>YuvNext</h2>
+        </div>
+        <h3 className="register-title">
+          Create Your Account
+        </h3>
+        <p className="register-subtitle">
+          Start storing and sharing your files securely.
+        </p>
+        {error && (
+          <div className="alert alert-danger">
+            {error}
+          </div>
+        )}
+        <form onSubmit={handleRegister}>
+          <div className="mb-3">
+            <label className="form-label">
+              Full Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your full name"
+              value={name}
+              onChange={(e) =>
+                setName(e.target.value)
+              }
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">
+              Email Address
+            </label>
 
-      <form onSubmit={handleRegister}>
-        <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-        <br /><br />
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Create a password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              minLength={6}
+              required
+            />
+          </div>
 
-        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <br /><br />
+          <div className="mb-4">
+            <label className="form-label">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) =>
+                setConfirmPassword(
+                  e.target.value
+                )
+              }
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary register-btn"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2"></span>
+                Creating Account...
+              </>
+            ) : (
+              "Register"
+            )}
+          </button>
+        </form>
+        <div className="register-footer">
+          <p className="mt-4">
+            Already have an account?
+            <Link
+              to="/login"
+              className="ms-2"
+            >
+              Login
+            </Link>
+          </p>
+        </div>
 
-        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-        <br /><br />
-
-        <button type="submit">Register</button>
-      </form>
+      </div>
     </div>
   );
 }

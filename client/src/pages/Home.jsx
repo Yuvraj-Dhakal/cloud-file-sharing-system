@@ -1,32 +1,24 @@
-import { Link } from "react-router-dom";
 
-function App() {
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Features from "../components/Features";
+import WhyChoose from "../components/WhyChoose";
+import Pricing from "../components/Pricing";
+import CTA from "../components/CTA";
+import Footer from "../components/Footer";
+
+function Home() {
   return (
-    <div style={styles.container}>
-      <h1>  Cloudbased Storage</h1>
-
-      <p>Upload • Share • Secure Files</p>
-
-      <div style={styles.links}>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-        <Link to="/dashboard">Dashboard</Link>
-      </div>
-    </div>
+    <>
+      <Navbar />    
+      <Hero />
+      <Features />
+      <WhyChoose />
+      <Pricing />
+      <CTA />
+      <Footer />
+    </>
   );
 }
 
-const styles = {
-  container: {
-    textAlign: "center",
-    marginTop: "100px",
-  },
-  links: {
-    display: "flex",
-    gap: "20px",
-    justifyContent: "center",
-    marginTop: "20px",
-  },
-};
-
-export default App;
+export default Home;

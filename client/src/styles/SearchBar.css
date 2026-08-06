@@ -1,0 +1,136 @@
+/* =====================================
+   Premium Search Bar
+===================================== */
+
+.search-container{
+    margin:22px 0;
+}
+
+/* ===================================== */
+
+.search-box{
+    position:relative;
+    display:flex;
+    align-items:center;
+
+    background:#fff;
+
+    height:56px;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 25px rgba(15,23,42,.06);
+
+    transition:.3s;
+}
+
+.search-box:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 16px 35px rgba(37,99,235,.10);
+}
+
+.search-box:focus-within{
+    border-color:#2563eb;
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.10),
+        0 12px 30px rgba(37,99,235,.10);
+}
+
+/* ===================================== */
+
+.search-icon{
+    font-size:18px;
+    color:#94a3b8;
+    margin-right:14px;
+    flex-shrink:0;
+}
+
+/* ===================================== */
+
+.search-box input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+    font-weight:500;
+
+    color:#0f172a;
+}
+
+.search-box input::placeholder{
+    color:#94a3b8;
+    font-size:15px;
+}
+
+/* ===================================== */
+
+.clear-search{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.clear-search:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* ===================================== */
+
+@media(max-width:768px){
+
+.search-container{
+    margin:18px 0;
+}
+
+.search-box{
+    height:50px;
+    padding:0 15px;
+    border-radius:14px;
+}
+
+.search-icon{
+    font-size:16px;
+    margin-right:12px;
+}
+
+.search-box input{
+    font-size:14px;
+}
+
+.search-box input::placeholder{
+    font-size:14px;
+}
+
+.clear-search{
+    width:30px;
+    height:30px;
+    border-radius:8px;
+}
+
+}

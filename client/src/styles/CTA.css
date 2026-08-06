@@ -1,0 +1,83 @@
+/* ==========================
+   CTA SECTION
+========================== */
+
+.cta-section{
+    padding:100px 0;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+    text-align:center;
+}
+
+.cta-box{
+    max-width:850px;
+    margin:auto;
+}
+
+.cta-box h2{
+    font-size:48px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.cta-box p{
+    font-size:18px;
+    line-height:1.8;
+    opacity:.95;
+    margin-bottom:40px;
+}
+
+.cta-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.cta-buttons .btn{
+    padding:15px 36px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.cta-buttons .btn:hover{
+    transform:translateY(-4px);
+}
+
+.cta-buttons .btn-light{
+    color:#2563eb;
+}
+
+.cta-buttons .btn-outline-light{
+    border:2px solid white;
+}
+
+@media(max-width:768px){
+
+.cta-section{
+padding:80px 0;
+}
+.cta-box h2{
+font-size:36px;
+}
+.cta-box p{
+font-size:16px;
+}
+}
+
+@media(max-width:576px){
+
+.cta-box h2{
+font-size:30px;
+}
+
+.cta-buttons{
+flex-direction:column;
+}
+
+.cta-buttons .btn{
+width:100%;
+}
+
+}

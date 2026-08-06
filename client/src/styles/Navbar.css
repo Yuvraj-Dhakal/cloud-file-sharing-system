@@ -1,0 +1,212 @@
+/* =========================================================
+   PREMIUM LANDING PAGE NAVBAR
+========================================================= */
+
+.yuv-navbar{
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(37,99,235,.08);
+    box-shadow:0 15px 40px rgba(15,23,42,.08);
+    padding:16px 0;
+    transition:.35s;
+}
+
+/* =========================
+   Logo
+========================= */
+
+.navbar-brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+}
+
+.brand-icon{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    font-size:26px;
+    box-shadow:
+        0 14px 30px rgba(37,99,235,.28),
+        inset 0 0 10px rgba(255,255,255,.2);
+    transition:.35s;
+}
+
+.brand-icon:hover{
+    transform:rotate(-8deg) scale(1.08);
+}
+
+.brand-title{
+    font-size:28px;
+    font-weight:800;
+    color:#0f172a;
+    line-height:1;
+}
+
+.brand-subtitle{
+    margin-top:5px;
+    color:#64748b;
+    font-size:14px;
+    font-weight:500;
+}
+
+/* =========================
+   Menu
+========================= */
+
+.navbar-nav{
+    gap:8px;
+}
+
+.nav-link{
+    position:relative;
+    font-size:16px;
+    font-weight:700;
+    color:#475569 !important;
+    padding:10px 18px !important;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#2563eb !important;
+    background:#eff6ff;
+}
+
+.nav-link::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:5px;
+    width:0;
+    height:3px;
+    border-radius:20px;
+    background:#2563eb;
+    transition:.3s;
+    transform:translateX(-50%);
+}
+
+.nav-link:hover::after{
+    width:55%;
+}
+
+/* =========================
+   Right Buttons
+========================= */
+
+.navbar-buttons{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+/* Login */
+
+.login-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    padding:11px 26px;
+    border:2px solid #2563eb;
+    border-radius:14px;
+    color:#2563eb;
+    background:#fff;
+    font-weight:700;
+    transition:.3s;
+    min-width:120px;
+}
+
+.login-btn:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(37,99,235,.22);
+}
+
+/* Register */
+
+.register-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+    padding:12px 30px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    font-weight:700;
+    transition:.3s;
+    box-shadow:0 15px 30px rgba(37,99,235,.25);
+    min-width:170px;
+}
+
+.register-btn:hover{
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 22px 40px rgba(37,99,235,.35);
+}
+
+.register-btn svg{
+    transition:.3s;
+}
+
+.register-btn:hover svg{
+    transform:translateX(5px);
+}
+
+/* =========================
+   Mobile Toggle
+========================= */
+
+.navbar-toggler{
+    border:none;
+    padding:8px 12px;
+    border-radius:12px;
+    background:#eff6ff;
+}
+
+.navbar-toggler:focus{
+    box-shadow:none;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width:992px){
+
+    .navbar-collapse{
+        margin-top:20px;
+        padding:20px;
+        border-radius:18px;
+        background:#fff;
+        box-shadow:0 15px 35px rgba(0,0,0,.08);
+    }
+
+    .navbar-nav{
+        margin-bottom:20px;
+    }
+
+    .nav-link{
+        margin:6px 0;
+    }
+
+    .navbar-buttons{
+        flex-direction:column;
+        width:100%;
+        gap:12px;
+        margin-top:10px;
+    }
+
+    .login-btn,
+    .register-btn{
+        width:100%;
+    }
+}

@@ -2,25 +2,63 @@ const mongoose = require("mongoose");
 
 const fileSchema = new mongoose.Schema(
   {
-    filename: String,
-    originalName: String,
-    path: String,
-    size: Number,
+    originalName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-    // who uploaded it
+    publicId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    fileUrl: {
+      type: String,
+      required: true,
+    },
+
+    fileType: {
+      type: String,
+      default: "",
+    },
+
+    mimeType: {
+      type: String,
+      default: "",
+    },
+
+    size: {
+      type: Number,
+      required: true,
+    },
+
     uploadedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
 
-    // 🔥 NEW: public sharing system
     shareId: {
       type: String,
+      required: true,
       unique: true,
-      default: null,
+    },
+
+    downloadCount: {
+      type: Number,
+      default: 0,
+    },
+
+    isPublic: {
+      type: Boolean,
+      default: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
 module.exports = mongoose.model("File", fileSchema);

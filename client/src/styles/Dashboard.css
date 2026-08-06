@@ -1,0 +1,272 @@
+/* =========================================================
+   Dashboard Layout
+========================================================= */
+
+.dashboard-page{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top right,#dbeafe 0%,transparent 30%),
+        radial-gradient(circle at bottom left,#e0e7ff 0%,transparent 35%),
+        linear-gradient(180deg,#f8fbff 0%,#f4f8ff 100%);
+    overflow-x:hidden;
+}
+
+.dashboard-main{
+    max-width:1450px;
+    margin:auto;
+    padding:35px 25px 70px;
+}
+
+/* =========================================================
+   Dashboard Hero
+========================================================= */
+
+.dashboard-hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:45px 50px;
+    margin-bottom:35px;
+    border-radius:28px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 25px 60px rgba(37,99,235,.25);
+}
+
+.dashboard-hero::before{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    right:-70px;
+    top:-70px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+}
+
+.dashboard-hero::after{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:170px;
+    left:-40px;
+    bottom:-60px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+}
+
+.dashboard-hero-left{
+    position:relative;
+    z-index:2;
+}
+
+.dashboard-badge{
+    display:inline-block;
+    padding:8px 16px;
+    margin-bottom:18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(8px);
+    font-size:14px;
+    font-weight:600;
+}
+.dashboard-hero h1{
+    font-size:42px;
+    font-weight:800;
+    margin-bottom:14px;
+}
+
+.dashboard-hero p{
+    max-width:560px;
+    font-size:17px;
+    opacity:.92;
+    line-height:1.7;
+}
+
+/* =========================================================
+   Storage Card
+========================================================= */
+.storage-card{
+    width:280px;
+    padding:28px;
+    border-radius:22px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.2);
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.storage-card small{
+    display:block;
+    opacity:.85;
+    margin-bottom:10px;
+    font-size:14px;
+}
+
+.storage-card h2{
+    font-size:38px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+.storage-progress{
+    height:10px;
+    background:rgba(255,255,255,.25);
+    border-radius:30px;
+    overflow:hidden;
+    margin-bottom:10px;
+}
+.storage-progress-fill{
+    height:100%;
+    border-radius:30px;
+    background:#fff;
+    width:35%;
+}
+
+.storage-card span{
+    font-size:13px;
+    opacity:.9;
+}
+
+/* =========================================================
+   Sections
+========================================================= */
+
+.dashboard-section{
+    margin-bottom:35px;
+}
+
+/* =========================================================
+   Empty State
+========================================================= */
+
+.empty-state{
+    background:#fff;
+    border-radius:24px;
+    padding:70px 40px;
+    border:1px solid #e5e7eb;
+    text-align:center;
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.06);
+}
+
+.empty-state i{
+    font-size:82px;
+    color:#2563eb;
+}
+
+.empty-state h2{
+    margin-top:22px;
+    font-size:34px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.empty-state p{
+    margin-top:12px;
+    color:#64748b;
+    font-size:17px;
+    max-width:520px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.7;
+}
+
+/* =========================================================
+   Smooth Animation
+========================================================= */
+
+.dashboard-hero,
+.dashboard-section{
+    animation:fadeUp .45s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(18px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media(max-width:992px){
+
+.dashboard-main{
+padding:25px 20px 60px;
+}
+.dashboard-hero{
+flex-direction:column;
+align-items:flex-start;
+gap:30px;
+padding:35px;
+}
+
+.storage-card{
+width:100%;
+}
+
+.dashboard-hero h1{
+font-size:34px;
+}
+}
+
+@media(max-width:768px){
+.dashboard-section{
+margin-bottom:25px;
+}
+
+.dashboard-main{
+padding:20px 15px 50px;
+}
+
+.dashboard-hero{
+padding:28px;
+border-radius:22px;
+}
+
+.dashboard-badge{
+font-size:13px;
+}
+
+.dashboard-hero h1{
+font-size:28px;
+}
+
+.dashboard-hero p{
+font-size:15px;
+}
+
+.storage-card{
+padding:22px;
+}
+
+.storage-card h2{
+font-size:30px;
+}
+
+.empty-state{
+padding:45px 20px;
+}
+
+.empty-state i{
+font-size:60px;
+}
+
+.empty-state h2{
+font-size:24px;
+}
+
+.empty-state p{
+font-size:15px;
+}
+}
