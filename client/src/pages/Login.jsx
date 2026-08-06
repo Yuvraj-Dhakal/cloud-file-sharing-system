@@ -21,10 +21,10 @@ function Login() {
     setError("");
     setLoading(true);
     try {
-      const res = await api.post("/auth/login", {
-        email,
-        password,
-      });
+      const res = await api.post("/api/auth/login", {
+  email,
+  password,
+});
       localStorage.setItem("token", res.data.token);
       if (res.data.user) {
         localStorage.setItem(
@@ -48,7 +48,7 @@ function Login() {
   // ==========================
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
-      const res = await api.post("/auth/google", {
+    const res = await api.post("/api/auth/login", {
         credential: credentialResponse.credential,
       });
       localStorage.setItem("token", res.data.token);
