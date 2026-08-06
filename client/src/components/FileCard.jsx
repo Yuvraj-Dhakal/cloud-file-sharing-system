@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { QRCodeCanvas } from "qrcode.react";
 
 import {
@@ -169,14 +169,14 @@ const handlePreview = async () => {
   try {
 
     const token = localStorage.getItem("token");
-    const res = await axios.get(
-      `${API_URL}/api/files/preview/${file._id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await api.get(
+  `/api/files/preview/${file._id}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
     window.open(
       res.data.url,
