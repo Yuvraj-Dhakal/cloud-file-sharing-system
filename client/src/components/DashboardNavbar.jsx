@@ -32,15 +32,12 @@ function DashboardNavbar() {
           <div className="dashboard-logo-icon">
 
             <FaCloud />
-
           </div>
 
           <div>
 
             <h2>YuvNext</h2>
-
-            <span>Premium Cloud Storage</span>
-
+            <span>Cloud File Sharing System</span>
           </div>
 
         </div>
