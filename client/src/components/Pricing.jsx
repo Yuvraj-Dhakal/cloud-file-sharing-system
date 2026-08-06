@@ -3,42 +3,41 @@ import "../styles/Pricing.css";
 
 function Pricing() {
 
-  const plans = [
-    {
-      name: "Free",
-      storage: "1 GB",
-      popular: false,
-      features: [
-        "Cloud Upload",
-        "Secure Download",
-        "QR Sharing",
-        "Basic Support",
-      ],
-    },
-    {
-      name: "Student",
-      storage: "10 GB",
-      popular: true,
-      features: [
-        "Everything in Free",
-        "Password Protected Sharing",
-        "Expiring Links",
-        "Priority Upload",
-      ],
-    },
-    {
-      name: "Professional",
-      storage: "100 GB",
-      popular: false,
-      features: [
-        "Everything in Student",
-        "Large File Support",
-        "Storage Analytics",
-        "Priority Support",
-      ],
-    },
-  ];
-
+const plans = [
+  {
+    name: "Basic",
+    storage: "100 MB",
+    popular: false,
+    features: [
+      "Cloud File Upload",
+      "Secure Download",
+      "File Management",
+      "User Authentication",
+    ],
+  },
+  {
+    name: "Standard",
+    storage: "Cloud Storage",
+    popular: true,
+    features: [
+      "Everything in Basic",
+      "Google Authentication",
+      "File Organization",
+      "Secure Sharing",
+    ],
+  },
+  {
+    name: "Advanced",
+    storage: "Coming Soon",
+    popular: false,
+    features: [
+      "Large File Support",
+      "Advanced Sharing",
+      "Analytics",
+      "More Storage",
+    ],
+  },
+];
   return (
     <section id="pricing" className="pricing-section">
 
@@ -46,12 +45,12 @@ function Pricing() {
 
         <div className="pricing-header">
 
-          <h2>Choose Your Plan</h2>
+          <h2>Simple Cloud Storage Experience</h2>
 
-          <p>
-            Flexible plans designed for students,
-            professionals and growing businesses.
-          </p>
+<p>
+  YuvNext provides secure file storage and sharing
+  features for students, professionals, and everyday users.
+</p>
 
         </div>
 

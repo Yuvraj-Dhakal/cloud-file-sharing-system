@@ -17,7 +17,12 @@ function UploadCard({
 
         <div className="upload-header-text">
           <h3>Upload New File</h3>
-          <p>Securely upload documents, images and videos.</p>
+          <p>
+  Securely upload documents, images, videos and other files.
+</p>
+<span>
+  Maximum file size: 100 MB
+</span>
         </div>
 
       </div>
@@ -30,14 +35,12 @@ function UploadCard({
         <FaFolderOpen className="drop-icon" />
 
         <div className="drop-content">
-
+<span>
+ Drag & Drop or click to browse
+</span>
           <h4>
             {file ? file.name : "Choose a file"}
           </h4>
-
-          <span>
-            Drag & Drop or click to browse
-          </span>
 
         </div>
 

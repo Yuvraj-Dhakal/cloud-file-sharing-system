@@ -13,53 +13,55 @@ const features = [
   {
     icon: FaCloudUploadAlt,
     color: "#2563EB",
-    title: "Cloud Storage",
+    title: "Cloud File Storage",
     description:
-      "Store your files securely in the cloud and access them anytime, anywhere.",
+      "Upload and store images, videos, and documents securely using cloud storage powered by Cloudinary.",
   },
   {
     icon: FaQrcode,
     color: "#10B981",
-    title: "QR Code Sharing",
+    title: "Easy File Sharing",
     description:
-      "Generate QR codes instantly for quick and secure file sharing.",
+      "Share your uploaded files easily with secure access links and convenient file management.",
   },
   {
     icon: FaLock,
     color: "#F97316",
     title: "Secure Authentication",
     description:
-      "JWT authentication and Google Login keep your account protected.",
+      "JWT authentication and Google Login protect user accounts and private files.",
   },
   {
     icon: FaLink,
     color: "#7C3AED",
-    title: "Smart Sharing",
+    title: "File Management",
     description:
-      "Share files using secure links with future support for password protection and expiration.",
+      "Manage uploaded files with organized storage, file details, download, and delete options.",
   },
   {
     icon: FaChartPie,
     color: "#EC4899",
-    title: "Storage Analytics",
+    title: "Smart File Organization",
     description:
-      "Monitor your storage usage, uploaded files, and account statistics.",
+      "Automatically organize files based on type including images, videos, documents, and other files.",
   },
   {
     icon: FaMobileAlt,
     color: "#06B6D4",
-    title: "Responsive Design",
+    title: "Responsive Interface",
     description:
-      "Optimized for desktop, tablet, and mobile devices with a modern SaaS interface.",
+      "Access YuvNext through a modern responsive interface optimized for desktop, tablet, and mobile devices.",
   },
 ];
 
 function Features() {
   return (
     <section id="features" className="features-section">
+
       <div className="container">
 
         <div className="section-header">
+
           <span className="section-badge">
             Features
           </span>
@@ -69,22 +71,27 @@ function Features() {
           </h2>
 
           <p>
-            YuvNext combines modern cloud storage,
-            secure sharing, and a clean user experience
-            into one powerful platform.
+            YuvNext provides secure cloud storage,
+            file management, and sharing features
+            through a modern and user-friendly platform.
           </p>
+
         </div>
+
 
         <div className="row">
 
           {features.map((feature, index) => {
+
             const Icon = feature.icon;
 
             return (
+
               <div
                 className="col-lg-4 col-md-6 mb-4"
                 key={index}
               >
+
                 <div className="feature-card">
 
                   <div
@@ -96,17 +103,29 @@ function Features() {
                     <Icon size={36} />
                   </div>
 
-                  <h4>{feature.title}</h4>
 
-                  <p>{feature.description}</p>
+                  <h4>
+                    {feature.title}
+                  </h4>
+
+
+                  <p>
+                    {feature.description}
+                  </p>
+
 
                 </div>
+
               </div>
+
             );
+
           })}
+
         </div>
 
       </div>
+
     </section>
   );
 }

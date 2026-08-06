@@ -6,27 +6,26 @@ import {
 } from "react-icons/fa";
 
 import "../styles/WhyChoose.css";
-
 const reasons = [
   {
     icon: <FaShieldAlt />,
-    title: "Enterprise Security",
-    text: "Your files are protected using JWT authentication with secure cloud storage.",
+    title: "Secure File Protection",
+    text: "Your files are protected using JWT authentication and secure cloud storage integration.",
   },
   {
     icon: <FaBolt />,
-    title: "Fast File Sharing",
-    text: "Generate shareable links and QR codes instantly for seamless access.",
+    title: "Fast File Management",
+    text: "Upload, download, search, and manage your files through a simple and modern dashboard.",
   },
   {
     icon: <FaCloud />,
-    title: "Cloud Powered",
-    text: "Built with MongoDB, Cloudinary, React, Node.js and Express for scalability.",
+    title: "Cloud Powered Storage",
+    text: "Built with React, Node.js, Express, MongoDB, and Cloudinary for reliable file storage.",
   },
   {
     icon: <FaUsers />,
-    title: "Designed for Everyone",
-    text: "Perfect for students, freelancers, teachers and professionals.",
+    title: "Built for Everyone",
+    text: "Designed for students, freelancers, teachers, and professionals who need secure file sharing.",
   },
 ];
 
@@ -47,9 +46,9 @@ function WhyChoose() {
           </h2>
 
           <p>
-            YuvNext is designed to make storing,
-            managing and sharing files simple,
-            secure and accessible from anywhere.
+           YuvNext makes file storage and sharing
+  simple, secure, and accessible through
+  a modern cloud-based platform.
           </p>
 
         </div>

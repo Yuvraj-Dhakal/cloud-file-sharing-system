@@ -179,7 +179,7 @@ function Dashboard() {
                   <h2>No Files Uploaded</h2>
                   <p>
                     Upload your first file to start using
-                    YuvNext Cloud Storage.
+YuvNext Cloud File Sharing.
                   </p>
                 </div>
 

@@ -22,20 +22,16 @@ function Footer() {
               <FaCloud size={34} />
               <div>
                 <h3>YuvNext</h3>
-
-                <small>Cloud Storage Platform</small>
-
+              <small>Cloud File Sharing System</small>
               </div>
 
             </div>
-            <p>
-              YuvNext is a secure cloud storage and smart
-              file sharing platform built using the MERN Stack.
-              It enables users to upload, manage, and securely
-              share files from anywhere with an intuitive and
-              modern user experience.
-            </p>
-
+              <p>
+  YuvNext is a secure cloud file sharing system
+  built with React, Node.js, Express, MongoDB,
+  and Cloudinary. It allows users to upload,
+  manage, and share files securely from anywhere.
+</p>
           </div>
 
           {/* Product */}
@@ -55,10 +51,10 @@ function Footer() {
 
             <h5>Features</h5>
 
-            <p>Secure File Upload</p>
-            <p>Cloud Storage</p>
-            <p>QR Code Sharing</p>
-            <p>Fast Downloads</p>
+          <p>Secure File Upload</p>
+<p>Cloud Storage</p>
+<p>File Management</p>
+<p>Secure Authentication</p>
 
           </div>
 
@@ -104,9 +100,9 @@ function Footer() {
         <hr />
 
         <p className="footer-copy">
-          © {new Date().getFullYear()} YuvNext Cloud Storage.
-          All Rights Reserved.
-        </p>
+  © {new Date().getFullYear()} YuvNext Cloud File Sharing System.
+  All Rights Reserved.
+</p>
 
       </div>
 

@@ -10,15 +10,18 @@ function CTA() {
             Start Today
           </span>
           <h2>
-            Secure Your Files with
+            Manage Your Files with
             <br />
             YuvNext Cloud Storage
           </h2>
-          <p>
-            Upload, organize, and share your files securely from
-            anywhere. Built for students, freelancers, and professionals
-            with a modern cloud experience.
-          </p>
+          
+           <p>
+  Upload, organize, and share your files securely
+  from anywhere. YuvNext provides cloud storage,
+  secure authentication, and a modern file management
+  experience.
+</p>
+
           <div className="cta-buttons">
             <Link
               to="/register"

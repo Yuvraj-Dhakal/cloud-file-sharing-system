@@ -20,10 +20,9 @@ function Navbar() {
             <div className="brand-title">
               YuvNext
             </div>
-
-            <div className="brand-subtitle">
-              Secure Cloud Storage
-            </div>
+           <div className="brand-subtitle">
+  Cloud File Sharing System
+</div>
           </div>
         </Link>
 
