@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import api from "../api";
+import api from "../config/api";
 
 import DashboardNavbar from "../components/DashboardNavbar";
 import StatsCards from "../components/StatsCards";
